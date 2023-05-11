@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bs5qshfwqjtbj"]
+
+[ext_resource type="Texture2D" uid="uid://b5aouhauvpesj" path="res://assets/texture_13.png" id="1_lffly"]
+
+[resource]
+albedo_texture = ExtResource("1_lffly")
+uv1_offset = Vector3(0, 0.5, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true

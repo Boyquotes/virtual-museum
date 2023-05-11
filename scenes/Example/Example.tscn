@@ -1,0 +1,431 @@
+[gd_scene load_steps=15 format=3 uid="uid://bhi5h1jpf7q47"]
+
+[ext_resource type="Script" path="res://scenes/Example/Example.gd" id="1_ktile"]
+[ext_resource type="PackedScene" uid="uid://53eqf851r73g" path="res://scenes/IsometricCharacter/IsometricCharacter.tscn" id="1_us0ew"]
+[ext_resource type="Material" uid="uid://bs5qshfwqjtbj" path="res://assets/PrototypeTexture.tres" id="2_y42c1"]
+[ext_resource type="Script" path="res://addons/godot_joystick/godot_joystick.gd" id="4_qomdr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7kvkv"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_bottom_color = Color(0.384314, 0.454902, 0.54902, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_3kypk"]
+sky_material = SubResource("ProceduralSkyMaterial_7kvkv")
+
+[sub_resource type="Environment" id="Environment_c3t6y"]
+background_mode = 2
+sky = SubResource("Sky_3kypk")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_0bc1t"]
+left_to_right = 1.0
+size = Vector3(5, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h36ue"]
+size = Vector3(1, 2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kff4u"]
+size = Vector3(1, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w05cd"]
+size = Vector3(1, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vsju"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4pl8t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mu1wh"]
+
+[node name="Example" type="Node3D"]
+script = ExtResource("1_ktile")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Joystick" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -156.0
+offset_top = -438.0
+offset_right = 156.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(156, 156)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("4_qomdr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c3t6y")
+
+[node name="Floor6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 0)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Floor4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 0)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Floor3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -10)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Floor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Floor5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -10)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="NorthWall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, -4.5)
+use_collision = true
+size = Vector3(10, 1, 2)
+material = ExtResource("2_y42c1")
+
+[node name="EastWall" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 4.5, 1.5, 0.5)
+use_collision = true
+size = Vector3(9, 1, 2)
+material = ExtResource("2_y42c1")
+
+[node name="WestWall" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -4.5, 1.5, 0.5)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+size = Vector3(9, 1, 2)
+
+[node name="Stairs" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 1.5, -1.5)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+mesh = SubResource("PrismMesh_0bc1t")
+
+[node name="IsometricCharacter" parent="." instance=ExtResource("1_us0ew")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="IsometricCharacter"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.5, 4)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 2.71454, 0)
+shadow_enabled = true
+
+[node name="Stairs2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 1.5, 3.5, -9.5)
+material_override = ExtResource("2_y42c1")
+use_collision = true
+mesh = SubResource("PrismMesh_0bc1t")
+
+[node name="EastWall2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 4.5, 3.5, -10.5)
+use_collision = true
+size = Vector3(9, 1, 2)
+material = ExtResource("2_y42c1")
+
+[node name="EastWall3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 1.06581e-14, 4.02341e-21, 0, -4.37114e-08, 1, 1.06581e-14, -1, -4.37114e-08, 12, 3.5, -6.5)
+use_collision = true
+size = Vector3(6, 1, 2)
+material = ExtResource("2_y42c1")
+
+[node name="EastWall4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 1.06581e-14, 4.02341e-21, 0, -4.37114e-08, 1, 1.06581e-14, -1, -4.37114e-08, 6, 3.5, -6.5)
+use_collision = true
+size = Vector3(2, 1, 2)
+material = ExtResource("2_y42c1")
+
+[node name="EastWall5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -5, 5.5, -11)
+use_collision = true
+size = Vector3(8, 1, 6)
+material = ExtResource("2_y42c1")
+
+[node name="1x3DisplayCase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 3, -7.5)
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x3DisplayCase"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_h36ue")
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x3DisplayCase"]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x3DisplayCase/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_kff4u")
+skeleton = NodePath("../../DisplayCaseArea3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_w05cd")
+
+[node name="1x3DisplayCase3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3, -1.5)
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x3DisplayCase3"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase3/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_h36ue")
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x3DisplayCase3"]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x3DisplayCase3/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_kff4u")
+skeleton = NodePath("../../DisplayCaseArea3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase3/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_w05cd")
+
+[node name="1x3DisplayCase4" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 3, 2)
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x3DisplayCase4"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase4/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_h36ue")
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x3DisplayCase4"]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x3DisplayCase4/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_kff4u")
+skeleton = NodePath("../../DisplayCaseArea3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase4/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_w05cd")
+
+[node name="1x3DisplayCase2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -10.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x3DisplayCase2"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase2/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_h36ue")
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x3DisplayCase2"]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x3DisplayCase2/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_kff4u")
+skeleton = NodePath("../../DisplayCaseArea3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase2/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_w05cd")
+
+[node name="1x3DisplayCase5" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.5, 3, -1.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x3DisplayCase5"]
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase5/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_h36ue")
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x3DisplayCase5"]
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x3DisplayCase5/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_kff4u")
+skeleton = NodePath("../../DisplayCaseArea3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x3DisplayCase5/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_w05cd")
+
+[node name="1x1_DisplayCase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3, -5.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x1_DisplayCase"]
+collision_layer = 3
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1vsju")
+metadata/_edit_lock_ = true
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x1_DisplayCase"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x1_DisplayCase/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_4pl8t")
+skeleton = NodePath("../../DisplayCaseArea3D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_mu1wh")
+metadata/_edit_lock_ = true
+
+[node name="1x1_DisplayCase2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -6.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x1_DisplayCase2"]
+collision_layer = 3
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase2/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1vsju")
+metadata/_edit_lock_ = true
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x1_DisplayCase2"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x1_DisplayCase2/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_4pl8t")
+skeleton = NodePath("../../DisplayCaseArea3D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase2/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_mu1wh")
+metadata/_edit_lock_ = true
+
+[node name="1x1_DisplayCase3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, -11.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x1_DisplayCase3"]
+collision_layer = 3
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase3/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1vsju")
+metadata/_edit_lock_ = true
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x1_DisplayCase3"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x1_DisplayCase3/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_4pl8t")
+skeleton = NodePath("../../DisplayCaseArea3D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase3/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_mu1wh")
+metadata/_edit_lock_ = true
+
+[node name="1x1_DisplayCase4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, -8.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x1_DisplayCase4"]
+collision_layer = 3
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase4/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1vsju")
+metadata/_edit_lock_ = true
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x1_DisplayCase4"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x1_DisplayCase4/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_4pl8t")
+skeleton = NodePath("../../DisplayCaseArea3D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase4/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_mu1wh")
+metadata/_edit_lock_ = true
+
+[node name="1x1_DisplayCase6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, -8.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x1_DisplayCase6"]
+collision_layer = 3
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase6/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1vsju")
+metadata/_edit_lock_ = true
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x1_DisplayCase6"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x1_DisplayCase6/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_4pl8t")
+skeleton = NodePath("../../DisplayCaseArea3D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase6/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_mu1wh")
+metadata/_edit_lock_ = true
+
+[node name="1x1_DisplayCase5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, -5.5)
+metadata/_edit_group_ = true
+
+[node name="DisplayCaseArea3D" type="Area3D" parent="1x1_DisplayCase5"]
+collision_layer = 3
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase5/DisplayCaseArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1vsju")
+metadata/_edit_lock_ = true
+
+[node name="DisplayCaseMesh" type="StaticBody3D" parent="1x1_DisplayCase5"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance" type="MeshInstance3D" parent="1x1_DisplayCase5/DisplayCaseMesh"]
+mesh = SubResource("BoxMesh_4pl8t")
+skeleton = NodePath("../../DisplayCaseArea3D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="1x1_DisplayCase5/DisplayCaseMesh"]
+shape = SubResource("BoxShape3D_mu1wh")
+metadata/_edit_lock_ = true

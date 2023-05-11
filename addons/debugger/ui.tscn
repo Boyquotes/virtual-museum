@@ -1,0 +1,178 @@
+[gd_scene load_steps=7 format=3 uid="uid://337b2kxvhh3o"]
+
+[ext_resource type="Theme" uid="uid://ic4jcm3na8wc" path="res://addons/debugger/resources/debugger_theme.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://cojeigrkro07e" path="res://addons/debugger/icon-16.png" id="2_m1y4b"]
+[ext_resource type="FontFile" uid="uid://bou8rem5finci" path="res://addons/debugger/fonts/SourceCodePro-Medium.ttf" id="3_plcup"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+bg_color = Color(0.156863, 0.160784, 0.180392, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_htxek"]
+font = ExtResource("3_plcup")
+font_color = Color(0.447059, 0.447059, 0.447059, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pkkd3"]
+
+[node name="MarginContainer" type="MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+offset_right = 431.0
+offset_bottom = 288.0
+size_flags_horizontal = 3
+theme = ExtResource("1")
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 80
+
+[node name="Background" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="Background"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Heading" type="PanelContainer" parent="Background/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PanelContainerLight"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/List/Heading"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HeadingMarginContainer1" type="MarginContainer" parent="Background/List/Heading/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/List/Heading/HBoxContainer/HeadingMarginContainer1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DebuggerIcon" type="TextureRect" parent="Background/List/Heading/HBoxContainer/HeadingMarginContainer1/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("2_m1y4b")
+stretch_mode = 5
+
+[node name="HeadingLabel" type="Label" parent="Background/List/Heading/HBoxContainer/HeadingMarginContainer1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Debugger"
+vertical_alignment = 1
+
+[node name="HeadingMarginContainer2" type="MarginContainer" parent="Background/List/Heading/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="DragButton" type="PanelContainer" parent="Background/List/Heading/HBoxContainer/HeadingMarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 10
+theme_override_styles/panel = SubResource("1")
+
+[node name="OuterContentMarginContainer" type="MarginContainer" parent="Background/List"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/List/OuterContentMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ContentMarginContainer" type="MarginContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ContentList" type="VBoxContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="HelpLabel" type="MarginContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList/HelpLabel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList/HelpLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HelperText" type="Label" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList/HelpLabel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "To add properties to the debugger, get a reference to the debugger and add a property of an object:"
+autowrap_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList/HelpLabel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PanelContainerValue"
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList/HelpLabel/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="HelperCode" type="Label" parent="Background/List/OuterContentMarginContainer/ScrollContainer/ContentMarginContainer/ContentList/HelpLabel/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "var debugger = get_node(\"Debugger\")
+var my_object = get_node(\"MyObject\")
+
+debugger.addMonitor(my_object, \"position\", \"Object Position\")
+"
+label_settings = SubResource("LabelSettings_htxek")
+autowrap_mode = 3
+
+[node name="DiagonalResizer" type="Panel" parent="Background"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_default_cursor_shape = 12
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pkkd3")
